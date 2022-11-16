@@ -39,7 +39,7 @@ public class ArticleController {
         Article saved = articleRepository.save(article);
         log.info(saved.toString());
         //System.out.println(saved.toString());
-        return "/articles";
+        return "";
     }
 
     @GetMapping("/articles/{id}")
@@ -53,7 +53,7 @@ public class ArticleController {
         model.addAttribute("article", articleEntity);
 
         //3: 보여줄 페이지를 설정
-        return "";
+        return "articles/show";
     }
 
     @GetMapping("/articles")
