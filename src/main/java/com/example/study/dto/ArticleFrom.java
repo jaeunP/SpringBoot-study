@@ -1,5 +1,7 @@
 package com.example.study.dto;
 
+import com.example.study.entity.Article;
+
 //폼데이터를 받아올 그릇
 public class ArticleFrom {
 
@@ -14,5 +16,10 @@ public class ArticleFrom {
     @Override
     public String toString() {
         return "ArticleFrom{" + "title='" + title + '\'' + ", content='" + content + '\'' + '}';
+    }
+
+    //Entity로 반환
+    public Article toEntity() {
+        return new Article(null,title,content);
     }
 }
