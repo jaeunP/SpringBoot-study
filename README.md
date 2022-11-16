@@ -14,3 +14,10 @@ form데이터가 전송이 되고 controller 이를 객체에 담아 받는데 �
 <b>JPA를 통하여 DB에 데이터 저장</b><br>
 데이터 저장과정<br>
 DTo를 Controller를 통해 Entity로 변환 -> Repository를 통해 Entity를 DB에 저장
+
+<b>Lombok을 이용해 리펙토링</b><br>
+@AllArgsConstructor,@NoArgsConstructor, @ToString 사용<br>
+@AllArgsConstructor => 모든 필드 값을 파라미터로 받는 생성자를 만듦<br>
+@NoArgsConstructor => 파라미터가 없는 기본 생성자를 생성<br>
+@ToString => toString() 메소드를 자동생성
+
