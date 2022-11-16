@@ -19,5 +19,13 @@ DTo를 Controller를 통해 Entity로 변환 -> Repository를 통해 Entity를 D
 @AllArgsConstructor,@NoArgsConstructor, @ToString 사용<br>
 @AllArgsConstructor => 모든 필드 값을 파라미터로 받는 생성자를 만듦<br>
 @NoArgsConstructor => 파라미터가 없는 기본 생성자를 생성<br>
-@ToString => toString() 메소드를 자동생성
+@ToString => toString() 메서드를 자동생성
 
+----
+<b>JPA를 통하여 데이터 조회</b><br>
+url요청을 파라미터로 받아올 때는 @PathVariable 사용<br>
+데이터 조회과정<br>
+ID를 통해 데이터를 가져옴<br>
+Repository에서 findById 메서드를 통하여 데이터를 조회<br>
+데이터를 모델에 등록<br>
+등록된 데이터를 뷰페이지로 연결<br>
