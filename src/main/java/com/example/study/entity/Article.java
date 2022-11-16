@@ -1,6 +1,7 @@
 package com.example.study.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Getter
 public class Article {
 
     @Id //구분하기 위한 대표 값을 지정
@@ -24,7 +26,15 @@ public class Article {
 
     //@Column은 생략 가능
     private String content;
+
+
 }
+/*  @Getter로 대체
+    public Long getId() {
+    return id;
+    }
+*/
+
 /*  @NoArgsConstructor로 기본생성자 해결
     public Article() {}
 */
