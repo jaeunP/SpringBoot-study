@@ -28,3 +28,8 @@ ID를 통해 데이터를 가져옴<br>
 Repository에서 findById 메서드를 통하여 데이터를 조회<br>
 데이터를 모델에 등록<br>
 등록된 데이터를 뷰페이지로 연결<br>
+
+<b>전체 페이지 조회</b><br>
+Repository로 Article을 가져와 리스트로 저장(타입 일치화 필요)<br>
+모델에 뷰등록<br>
+뷰 페이지 연결<br>
