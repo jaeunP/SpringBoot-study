@@ -29,7 +29,7 @@ public class Article {
     public Article() {}
 */
 
-/*  @NoArgsConstructor로 대체
+/*  @AllArgsConstructor로 대체
     public Article(Long id, String title, String content) {
         this.id = id;
         this.title = title;
