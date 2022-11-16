@@ -21,7 +21,6 @@ DTo를 Controller를 통해 Entity로 변환 -> Repository를 통해 Entity를 D
 @NoArgsConstructor => 파라미터가 없는 기본 생성자를 생성<br>
 @ToString => toString() 메서드를 자동생성
 
-----
 <b>JPA를 통하여 데이터 조회</b><br>
 url요청을 파라미터로 받아올 때는 @PathVariable 사용<br>
 데이터 조회과정<br>
