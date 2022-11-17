@@ -1,10 +1,12 @@
 # SpringBoot-study
 스프링 공부
 
-----
+------
 2022-11-15<br>
 <b>controller 구현</b>
+
 ----
+
 2022-11-16<br>
 <b>form 태그를 이용하여 데이터를 받고 이를 컨트롤러에서 확인</b><br>
 form데이터가 전송이 되고 controller 이를 객체에 담아 받는데 그 객체를 dto라고 한다
@@ -31,6 +33,7 @@ Repository에서 findById 메서드를 통하여 데이터를 조회<br>
 Repository에서 Article을 가져와 리스트로 저장(타입일치 필요)<br>
 데이터를 모델에 등록<br>
 등록된 데이터를 뷰페이지로 연결<br>
+
 ----
 2022-11-17<br>
 <b>페이지 간의 연결</b><br>
