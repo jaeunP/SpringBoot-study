@@ -7,14 +7,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 //폼데이터를 받아올 그릇
-public class ArticleFrom {
+public class ArticleForm {
 
+    private Long id;
     private String title;
     private String content;
 
     //Entity로 반환
     public Article toEntity() {
-        return new Article(null,title,content);
+        return new Article(id,title,content);
     }
 }
 /*  @AllArgsConstructor로 대체

@@ -28,10 +28,23 @@ Repository에서 findById 메서드를 통하여 데이터를 조회<br>
 등록된 데이터를 뷰페이지로 연결<br>
 
 <b>전체 페이지 조회</b><br>
-Repository로 Article을 가져와 리스트로 저장(타입 일치화 필요)<br>
-모델에 뷰등록<br>
-뷰 페이지
+Repository에서 Article을 가져와 리스트로 저장(타입일치 필요)<br>
+데이터를 모델에 등록<br>
+등록된 데이터를 뷰페이지로 연결<br>
 ----
 2022-11-17<br>
 <b>페이지 간의 연결</b><br>
 링크와 리다이렉트를 사용
+
+<b>데이터 수정, 삭제 기능 구현</b><br>
+<b>UPDATE 처리</b><br>
+기존 데이터를 불러오고 if문 사용하여 데이터가 null이 아니라면 DB갱신<br>
+
+<b>삭제과정</b><br>
+기존 데이터를 불러오고 if문을 사용하여 데이터 삭제<br>
+삭제 메세지를 출력할때 Model을 사용하려 했으나 <br>
+Model은  Redirect된 파라미터를 전달할 수 없기에 RedirectAttributes의 addFlashAttribute를 사용하여 1회성 메세지 전달
+
+
+
+
