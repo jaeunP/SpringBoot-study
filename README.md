@@ -46,7 +46,26 @@ Repository에서 Article을 가져와 리스트로 저장(타입일치 필요)<b
 <b>삭제과정</b><br>
 기존 데이터를 불러오고 if문을 사용하여 데이터 삭제<br>
 삭제 메세지를 출력할때 Model을 사용하려 했으나 <br>
-Model은  Redirect된 파라미터를 전달할 수 없기에 RedirectAttributes의 addFlashAttribute를 사용하여 1회성 메세지 전달
+Model은  Redirect된 파라미터를 전달할 수 없기에 RedirectAttributes의 addFlashAttribute를 사용하여 
+1회성 메세지 전달
+
+<b>DB에서 ID값 자동생성하도록 변경</b><br>
+데이터를 새로 생성할 때 ID가 중복되는 오류가 발생하여
+@GeneratedValue(strategy = GenerationType.IDENTITY)를 사용하여 DB를 통해 ID를 자동 생성하도록 설정<br>
+이후에도 오류가 발생하여 찾아보니 h2의 버전문제로 properties url 설정 부분에 ;MODE=MySQL을 추가햐여 해결
+
+<b>로깅 기능 추가</b>
+
+----
+2022-11-18
+
+<b>REST API로 CREATE, READ 기능</b><br>
+데이터 요청,처리 부분만 구현<br>
+REST API: 웹 서버의 자원을 클라이언트에 구애받지 않고 사용할수 있게 하는 설계 방식
+@RestController는 데이터를 JSON으로 반환하기 때문에 데이터를 던질때 @RequestBody를 사용함
+
+
+
 
 
 
