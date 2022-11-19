@@ -57,12 +57,18 @@ Model은  Redirect된 파라미터를 전달할 수 없기에 RedirectAttributes
 <b>로깅 기능 추가</b>
 
 ----
-2022-11-18
-
+2022-11-18<br>
 <b>REST API로 CREATE, READ 기능</b><br>
 데이터 요청,처리 부분만 구현<br>
 REST API: 웹 서버의 자원을 클라이언트에 구애받지 않고 사용할수 있게 하는 설계 방식
 @RestController는 데이터를 JSON으로 반환하기 때문에 데이터를 던질때 @RequestBody를 사용함
+
+----
+2022-11-19<br>
+<b>REST API로 UPDATE 기능</b><br>
+dto를 requestBOdy로 받아 Entity로 저장
+Entity를 조회하고 patch를 통해 저장
+
 
 
 
