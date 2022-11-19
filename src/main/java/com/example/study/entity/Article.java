@@ -18,13 +18,19 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //DB가 id를 자동 생성 어노테이션
     private Long id;
 
-    @Column 
+    @Column
     private String title;
 
     //@Column은 생략 가능
     private String content;
 
 
+    public void patch(Article article) {
+        if (article.title != null)
+            this.title = article.title;
+        if (article.content != null)
+            this.content = article.content;
+    }
 }
 /*  @Getter로 대체
     public Long getId() {
