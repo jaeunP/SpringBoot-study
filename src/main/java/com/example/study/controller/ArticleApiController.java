@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class ArticleApiController {
 
-    @Autowired
+    @Autowired  //DI
     private ArticleRepository articleRepository;
 
     //GET
@@ -36,10 +36,11 @@ public class ArticleApiController {
         Article article = dto.toEntity();
         return articleRepository.save(article);
     }
+
     //PATCH
     @PatchMapping("/api/articles/{id}")
     public ResponseEntity<Article> update(@RequestBody ArticleForm dto,
-                                         @PathVariable Long id) {
+                                          @PathVariable Long id) {
         //1. 수정용 Entity 생성
         Article article = dto.toEntity();
         log.info("id: {}, article: {}", id, article.toString());
@@ -48,13 +49,13 @@ public class ArticleApiController {
         Article target = articleRepository.findById(id).orElse(null);
 
         //3. 잘못된 요청 처리
-        if(target == null || id != article.getId()){
-            log.info("잘못된 요청! id: {}, article: {}" , id, article.toString());
+        if (target == null || id != article.getId()) {
+            log.info("잘못된 요청! id: {}, article: {}", id, article.toString());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 
         }
         //4. 업데이트 및 정상 응답
-        target.patch(article);
+        target.patch(article);  //수
         Article updated = articleRepository.save(target);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }

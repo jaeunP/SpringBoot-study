@@ -60,14 +60,25 @@ Model은  Redirect된 파라미터를 전달할 수 없기에 RedirectAttributes
 2022-11-18<br>
 <b>REST API로 CREATE, READ 기능</b><br>
 데이터 요청,처리 부분만 구현<br>
-REST API: 웹 서버의 자원을 클라이언트에 구애받지 않고 사용할수 있게 하는 설계 방식
+REST API: 웹 서버의 자원을 클라이언트에 구애받지 않고 사용할수 있게 하는 설계 방식<br>
 @RestController는 데이터를 JSON으로 반환하기 때문에 데이터를 던질때 @RequestBody를 사용함
 
 ----
 2022-11-19<br>
 <b>REST API로 UPDATE 기능</b><br>
-dto를 requestBOdy로 받아 Entity로 저장
-Entity를 조회하고 patch를 통해 저장
+dto를 requestBody로 받아 Entity로 저장<br>
+Entity를 조회<br>
+ResponseEntity에 Article데이터가 담겨서 json으로 반환<br>
+
+수정 시 수정되지 않는 데이터는 값으로 전송되지 않는데 전송 되지않는 값이 null값으로 반환됨
+Artice Entity에 patch메소드 추가<br>
+patch메소드는 기존에 데이터가 있다면 그 값을 그대로 불러오도록 작성<br>
+target.patch(article)로 patch메소드를 통해 데이터가 수정되지 않았으면 기존 값을 불러오도록 설정<br>
+
+
+
+
+ 
 
 
 
