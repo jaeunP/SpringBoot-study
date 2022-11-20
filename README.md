@@ -75,6 +75,13 @@ Artice Entity에 patch메소드 추가<br>
 patch메소드는 기존에 데이터가 있다면 그 값을 그대로 불러오도록 작성<br>
 target.patch(article)로 patch메소드를 통해 데이터가 수정되지 않았으면 기존 값을 불러오도록 설정<br>
 
+----
+2022-11-20<br>
+<b>REST API로 DELETE 기능</b><br>
+repository에서 대상을 찾아 target에 저장<br>
+target == null일 경우 오류메세지 출력<br>
+delete로 삭제<br>
+성공 상태메시지로 리턴, body에 담겨야할 json데이터가 없음으로 build로 바로 실행<br>
 
 
 
