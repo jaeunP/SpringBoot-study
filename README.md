@@ -83,6 +83,12 @@ target == null일 경우 오류메세지 출력<br>
 delete로 삭제<br>
 성공 상태메시지로 리턴, body에 담겨야할 json데이터가 없음으로 build로 바로 실행<br>
 
+----
+2022-11-21<br>
+<b>Service 추가</b><br>
+service를 통해서 전체목록, 상세페이지 영역 분할<br>
+
+
 
 
  
