@@ -88,7 +88,7 @@ delete로 삭제<br>
 <b>Service 추가</b><br>
 service를 통해서 전체목록, 상세페이지 영역 분할<br>
 입력한 데이터에 id값이 들어갈 경우 수정해버리는 경우가 발생해서<br>
-`if(article.getId() != null){return null;}`로 id값이 입력될경우에도 무시하도록 작성
+`if(article.getId() != null){return null;}`로 id값이 입력될경우에도 잘못된 요청으로 처리
 
 
 

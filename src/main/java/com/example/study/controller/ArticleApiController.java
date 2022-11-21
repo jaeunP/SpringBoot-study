@@ -16,7 +16,6 @@ import java.util.List;
 @Slf4j
 @RestController
 public class ArticleApiController {
-
     @Autowired  //DI, 생성 객체를 가져와 연결
     private ArticleService articleService;
 
@@ -40,44 +39,31 @@ public class ArticleApiController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-//    //PATCH
-//    @PatchMapping("/api/articles/{id}")
-//    public ResponseEntity<Article> update(@RequestBody ArticleForm dto,
-//                                          @PathVariable Long id) {
-//        //1. 수정용 Entity 생성
-//        Article article = dto.toEntity();
-//        log.info("id: {}, article: {}", id, article.toString());
-//
-//        //2.대상 Entity를 조회
-//        Article target = articleRepository.findById(id).orElse(null);
-//
-//        //3. 잘못된 요청 처리
-//        if (target == null || id != article.getId()) {
-//            log.info("잘못된 요청! id: {}, article: {}", id, article.toString());
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//
-//        }
-//        //4. 업데이트 및 정상 응답
-//        target.patch(article);  //수
-//        Article updated = articleRepository.save(target);
-//        return ResponseEntity.status(HttpStatus.OK).body(updated);
-//    }
+    //PATCH
+    @PatchMapping("/api/articles/{id}")
+    public ResponseEntity<Article> update(@PathVariable Long id,
+                                          @RequestBody ArticleForm dto) {
+        Article updated = articleService.update(id, dto);
+        return (updated != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(updated):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 
-//    //DELETE
-//    @DeleteMapping("/api/articles/{id}")
-//    public ResponseEntity<Article> delete(@PathVariable Long id) {
-//        //대상 찾기
-//        Article target = articleRepository.findById(id).orElse(null);
-//
-//        //잘못된 요청 처리
-//        if (target == null) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//        }
-//
-//        //대상 삭제
-//        articleRepository.delete(target);
-//
-//        //데이터 반환
-//        return ResponseEntity.status(HttpStatus.OK).build();
-//    }
+    //DELETE
+    @DeleteMapping("/api/articles/{id}")
+    public ResponseEntity<Article> delete(@PathVariable Long id) {
+        Article deleted = articleService.delete(id);
+        return (deleted != null) ?
+                ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    //트랜잭션 -> 실패 -> 롤백
+    @PostMapping("/api/transaction-test")
+    public ResponseEntity<List<Article>> transactionTest(@RequestBody List<ArticleForm> dtos) {
+        List<Article> createdList = articleService.createArticles(dtos);
+        return (createdList != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(createdList) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 }
