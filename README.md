@@ -99,6 +99,11 @@ ResponseEntity로 상태코드를 반환하도록 구현
 @ManyToOne을 통해 여러 댓글 Entity가 하나의 Article로 관련되게 설정<br>
 @JoinColumn을 통해 article의 id를 받아옴
 
+<b>댓글 Repository</b><br>
+JpaRepository를 사용<br>
+JpaRepository: 페이지처리와 정렬기능을 제공<br>
+query문을 통해서 직접 메소드 작성(SQL로 작성)<br>
+
 
 
 
