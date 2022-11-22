@@ -91,9 +91,13 @@ service를 통해서 전체목록, 상세페이지 영역 분할<br>
 `if(article.getId() != null){return null;}`로 id값이 입력될경우에도 잘못된 요청으로 처리
 
 <b>service를 통해서 CRUD 구현</b>
+ResponseEntity로 상태코드를 반환하도록 구현
 
-<b>트랜잭션 테스트</b>
-
+----
+2022-11-22<br>
+<b>댓글 Entity 작성</b><br>
+@ManyToOne을 통해 여러 댓글 Entity가 하나의 Article로 관련되게 설정<br>
+@JoinColumn을 통해 article의 id를 받아옴
 
 
 
