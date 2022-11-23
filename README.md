@@ -107,12 +107,21 @@ SQL을 orm.xml로 작성<br>
 
 ----
 2022-11-23<br>
-**댓글 DTO, Service, Controller 구현**
+**댓글 DTO, Service, Controller 생성**
 
-**특정 게시물의 댓글 목록 조회**<br>
+**특정 게시물의 댓글 목록 조회 구현**<br>
 목록을 조회하기에 List 사용<br>
 stream을 사용해서 Entity를 Dto로 변환(람다식 사용) -> collect로 List로 반환<br>
 
+**댓글 생성 기능 구현**<br>
+Repository에서 articleId를 가져와 게시글 조회 및 예외발생<br>
+Entity를 생성, 저장하고 DTO로 변환하여 저장<br>
+
+**댓글 수정 기능 구현**<br>
+Repository에서 댓글을 불러오고 patch 메소드를 통하여 수정<br>
+patch 메소드는 nickname과 body가 null이 아니라면 새로운 값으로 변경하는 메소드<br>
+다시 Repository에 저장<br>
+Entity를 Dto로 변환하여 리턴<br>
 
 
 
