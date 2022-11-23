@@ -105,6 +105,17 @@ JpaRepository: 페이지처리와 정렬기능을 제공<br>
 query문을 통해서 직접 메소드 작성(SQL로 작성)<br>
 SQL을 orm.xml로 작성<br>
 
+----
+2022-11-23<br>
+**댓글 DTO, Service, Controller 구현**
+
+**특정 게시물의 댓글 목록 조회**<br>
+목록을 조회하기에 List 사용<br>
+stream을 사용해서 Entity를 Dto로 변환(람다식 사용) -> collect로 List로 반환<br>
+
+
+
+
 
 
 
