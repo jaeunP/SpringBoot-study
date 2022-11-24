@@ -123,6 +123,15 @@ patch 메소드는 nickname과 body가 null이 아니라면 새로운 값으로 
 다시 Repository에 저장<br>
 Entity를 Dto로 변환하여 리턴<br>
 
+**댓글 삭제**
+Repository에서 댓글을 불러와서 DB에서 데이터를 삭제 후 DTO 반환<br>
+댓글을 불러올 때 ID가 없다면 예외 발생<br>
+
+
+
+
+
+
 
 
 
