@@ -54,7 +54,7 @@ public class ArticleController {
 
         //1: ID로 데이터를 가져옴
         Article articleEntity = articleRepository.findById(id).orElse(null);//해당 아이디값이 없다면 null
-         List< CommentDto> commentDtos = commentService.comments(id);
+        List< CommentDto> commentDtos = commentService.comments(id);
 
         //2: 가져온 데이터를 모델에 등록
         model.addAttribute("article", articleEntity);

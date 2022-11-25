@@ -127,6 +127,12 @@ Entity를 Dto로 변환하여 리턴<br>
 Repository에서 댓글을 불러와서 DB에서 데이터를 삭제 후 DTO 반환<br>
 댓글을 불러올 때 ID가 없다면 예외 발생<br>
 
+----
+2022-11-24<br>
+**댓글 목록 view**<br>
+기존의 게시글 show 페이지에 댓글 페이지를 연결<br>
+DTO를 view로 띄우기 위해 DTO를 model로 등록<br>
+commentDtos를 불러와 댓글 목록을 가져옴<br>
 
 
 
