@@ -134,6 +134,20 @@ Repository에서 댓글을 불러와서 DB에서 데이터를 삭제 후 DTO 반
 DTO를 view로 띄우기 위해 DTO를 model로 등록<br>
 commentDtos를 불러와 댓글 목록을 가져옴<br>
 
+----
+2022-11-25<br>
+**댓글 생성**<br>
+댓글 폼에서 전송버튼을 클릭하였을 때 REST API 요청이 보내지도록 작성<br>
+document.querySelector를 사용하여 버튼 변수화<br>
+.addEventListener을 통해서 클릭 이벤트를 감지<br>
+클릭시 input에 있는 데이터를 객체로 생성<br>
+fetch()를 사용하여 POST 형식으로 JSON 데이터로 전송<br>
+alert메세지를 통하여 전송 결과에 따른 메시지 출력<br>
+메세지 전송 후 자동으로 새로고침 되도록 window.location.reload()사용
+
+
+
+
 
 
 
