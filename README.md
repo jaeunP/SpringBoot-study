@@ -157,6 +157,17 @@ BootStrap의 모달 사용<br>
 객체를 fetch()를 통해서 REST API 호출<br>
 alert메세지를 통하여 전송 결과에 따른 메시지 출력 후 새로고침<br>
 
+----
+2022-11-27<br>
+**댓글 삭제**<br>
+삭제 버튼 추가하고 삭제버튼 변수화<br>
+document.querySelector이 첫번째 버튼만 인식<br>
+수정버튼의 경우 bootstrap의 modal에 들어있는 JS 때문에 Selector만으로 모든 버튼이 변수화 되었다<br>
+따라서 querySelectorAll을 사용<br>
+배열형태로 받아오기 때문에 forEach()를 사용하여 각 요소에 개별적으로 함수 실행<br>
+삭제 댓글의 id를 가져오고 REST API 호출<br>
+remove()를 사용하여 새로고침하지 않고 화면에서 삭제된 댓글을 지움<br>
+
 
     
 
