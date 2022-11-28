@@ -169,12 +169,25 @@ document.querySelector이 첫번째 버튼만 인식<br>
 remove()를 사용하여 새로고침하지 않고 화면에서 삭제된 댓글을 지움<br>
 
 ----
-20220-11-28
-**My SQL 연동**
+2022-11-28<br>
+**My SQL 연동**<br>
 My SQL 의존성 추가<br>
 properties에 계정 추가<br>
 `spring.datasource.initialization-mode=never`로 초기화 설정을 끄고<br>
 `spring.jpa.hibernate.ddl-auto=update`로 데이터 변경시 변경사항만 저장하도록 설정<br>
+
+**IoC와 DI 학습**
+IoC(Inversion of Control)란?<br>
+"제어의 역전"이라는 의미로 IoC 컨테이너가 객체의 생성,관리를 맡아서 하게 됨으로 제어권이<br>
+컨테이너에게 넘어온 것을 의미하며 이로 인해 DI, AOP 등이 가능하게 된다.<br>
+
+DI(Dependency Injection)란? <br>
+"의존성 주입"이라는 의미로 스프링이 다른 프레임워크와 차별화되어 제공하는 의존 관계 주입 기능으로,<br>
+객체를 직접 생성하는 게 아니라 외부에서 생성한 후 주입 시켜주는 방식이다.
+DI를 통해서 모듈 간의 결합도가 낮아지고 유연성이 높아진다<br>
+@Component는 Spring에서 관리되는 객체임을 표시하기 위해, DI를 사용하기 위한 가장 기본 어노테이션이다.<br>
+@Controller, @Service, @Repository는 @Component을 역할에 따라 더 세분화한 것이다.<br>
+
 
 
 
