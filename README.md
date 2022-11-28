@@ -168,6 +168,16 @@ document.querySelector이 첫번째 버튼만 인식<br>
 삭제 댓글의 id를 가져오고 REST API 호출<br>
 remove()를 사용하여 새로고침하지 않고 화면에서 삭제된 댓글을 지움<br>
 
+----
+20220-11-28
+**My SQL 연동**
+My SQL 의존성 추가<br>
+properties에 계정 추가<br>
+`spring.datasource.initialization-mode=never`로 초기화 설정을 끄고<br>
+`spring.jpa.hibernate.ddl-auto=update`로 데이터 변경시 변경사항만 저장하도록 설정<br>
+
+
+
 
     
 
