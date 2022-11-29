@@ -192,7 +192,7 @@ DI를 통해서 모듈 간의 결합도가 낮아지고 유연성이 높아진�
 2022-11-20<br>
 **AOP(Aspect Oriented Programming)란?**<br>
 관점 지향 프로그래밍이라고 불리며 부가기능을 특정 구간에 삽입함으로써 더욱 간결하고 효율적인 프로그래밍을 가능하게 한다.<br>
-AOP는  @Aspect를 사용해 Aspect를 나타내는 클래스라고 명시하고 @Component를 붙여 스프링 빈으로 등록한다.<br<>
+AOP는  @Aspect를 사용해 Aspect를 나타내는 클래스라고 명시하고 @Component를 붙여 스프링 빈으로 등록한다.<br>
 PoinCut()으로 주입대상을 지정하고 @Before, @AfterReturning, @Around로 대상이 실행되기전, 후, 전-후를 지정하여 사용할수 있다.<br>
 
 
