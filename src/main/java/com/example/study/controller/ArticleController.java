@@ -1,6 +1,6 @@
 package com.example.study.controller;
 
-import com.example.study.Service.CommentService;
+import com.example.study.service.CommentService;
 import com.example.study.dto.ArticleForm;
 import com.example.study.dto.CommentDto;
 import com.example.study.entity.Article;

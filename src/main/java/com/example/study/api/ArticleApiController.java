@@ -1,7 +1,7 @@
 package com.example.study.api;
 
 
-import com.example.study.Service.ArticleService;
+import com.example.study.service.ArticleService;
 import com.example.study.dto.ArticleForm;
 import com.example.study.entity.Article;
 import lombok.extern.slf4j.Slf4j;

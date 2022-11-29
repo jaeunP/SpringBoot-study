@@ -1,6 +1,7 @@
 package com.example.study.api;
 
-import com.example.study.Service.CommentService;
+import com.example.study.annotation.RunningTime;
+import com.example.study.service.CommentService;
 import com.example.study.dto.CommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,6 +44,8 @@ public class CommentApiController {
         // 결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
     }
+
+    @RunningTime
     // 댓글 삭제
     @DeleteMapping("/api/comments/{id}")
     public ResponseEntity<CommentDto> delete(@PathVariable Long id){
