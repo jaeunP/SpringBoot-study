@@ -1,4 +1,4 @@
-package com.example.study.Service;
+package com.example.study.service;
 
 import com.example.study.dto.ArticleForm;
 import com.example.study.entity.Article;
