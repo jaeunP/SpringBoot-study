@@ -1,6 +1,6 @@
 package com.example.study.service;
 
-import com.example.study.dto.ArticleForm;
+import com.example.study.dto.ArticleDto;
 import com.example.study.entity.Article;
 import com.example.study.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ public class ArticleService {
     }
 
 
-    public Article create(ArticleForm dto) {
+    public Article create(ArticleDto dto) {
         Article article = dto.toEntity();
         if(article.getId() != null) {
             return null;
@@ -36,7 +36,7 @@ public class ArticleService {
         return articleRepository.save(article);
     }
 
-    public Article update(Long id, ArticleForm dto) {
+    public Article update(Long id, ArticleDto dto) {
 
         // 1: DTO -> 엔티티
         Article article = dto.toEntity();
@@ -71,7 +71,7 @@ public class ArticleService {
     }
 
     @Transactional
-    public List<Article> createArticles(List<ArticleForm> dtos) {
+    public List<Article> createArticles(List<ArticleDto> dtos) {
         // dto 묶음을 entity 묶음으로 변환
         List<Article> articleList = dtos.stream()
                 .map(dto -> dto.toEntity())

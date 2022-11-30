@@ -7,7 +7,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 //폼데이터를 받아올 그릇
-public class ArticleForm {
+public class ArticleDto {
 
     private Long id;
     private String title;

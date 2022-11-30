@@ -136,6 +136,7 @@
                         alert("댓글 삭제 실패");
                         return;
                     }
+                    alert("댓글 삭제 성공");
                     //삭제 성공 시 ,댓글을 화면에서 지움
                     const target = document.querySelector(`#comments-${commentId}`);
                     target.remove();

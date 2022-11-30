@@ -1,7 +1,7 @@
 package com.example.study.controller;
 
 import com.example.study.service.CommentService;
-import com.example.study.dto.ArticleForm;
+import com.example.study.dto.ArticleDto;
 import com.example.study.dto.CommentDto;
 import com.example.study.entity.Article;
 import com.example.study.repository.ArticleRepository;
@@ -26,13 +26,29 @@ public class ArticleController {
     @Autowired
     private CommentService commentService;
 
+
+    //index
+    @GetMapping("/articles")
+    public String index(Model model) {
+        // 1: 모든 Article을 가져온다
+        //서로 타입이 다르기 때문에 타입변환 필요, ArticleRepository에서 변환
+        List<Article> articleEntityList = articleRepository.findAll();
+
+        // 2: 가져온 Article 묶음을 뷰로 전달
+        model.addAttribute("articleList",articleEntityList);
+
+        // 3: 뷰 페이지를 설정
+        return "articles/index";
+    }
+
+    //new
     @GetMapping("/articles/new")
     public String newArticleForm() {
         return "articles/new";
     }
 
     @PostMapping("/articles/create")
-    public String createArticle(ArticleForm form) {
+    public String createArticle(ArticleDto form) {
         log.info(form.toString());
         //System.out.println(form.toString());기록에 남지도 않고 서버의 성능에 악영향 ->logging으로 대체
 
@@ -48,6 +64,7 @@ public class ArticleController {
         return "redirect:/articles/" + saved.getId();
     }
 
+    //show
     @GetMapping("/articles/{id}")
     public String show(@PathVariable Long id, Model model) {
         log.info("id=" + id);
@@ -64,19 +81,8 @@ public class ArticleController {
         return "articles/show";
     }
 
-    @GetMapping("/articles")
-    public String index(Model model) {
-        // 1: 모든 Article을 가져온다
-        //서로 타입이 다르기 때문에 타입변환 필요, ArticleRepository에서 변환
-        List<Article> articleEntityList = articleRepository.findAll();
 
-        // 2: 가져온 Article 묶음을 뷰로 전달
-        model.addAttribute("articleList",articleEntityList);
-
-        // 3: 뷰 페이지를 설정
-        return "articles/index";
-    }
-
+    //edit
     @GetMapping("/articles/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
         Article articleEntity =articleRepository.findById(id).orElse(null);
@@ -86,8 +92,9 @@ public class ArticleController {
         return "articles/edit";
     }
 
+
     @PostMapping("/articles/update")
-    public String update(ArticleForm form){
+    public String update(ArticleDto form){
         log.info(form.toString());
 
         //1: DTO를 Entity로 변환
@@ -105,6 +112,7 @@ public class ArticleController {
         return "redirect:/articles/" + articleEntity.getId();
     }
 
+    //delete
     @GetMapping("/articles/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes rttr){
         log.info("삭제 요청");
