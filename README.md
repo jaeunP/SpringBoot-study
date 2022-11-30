@@ -189,11 +189,20 @@ DI를 통해서 모듈 간의 결합도가 낮아지고 유연성이 높아진�
 @Controller, @Service, @Repository는 @Component을 역할에 따라 더 세분화한 것이다.<br>
 
 ----
-2022-11-20<br>
+2022-11-29<br>
 **AOP(Aspect Oriented Programming)란?**<br>
 관점 지향 프로그래밍이라고 불리며 부가기능을 특정 구간에 삽입함으로써 더욱 간결하고 효율적인 프로그래밍을 가능하게 한다.<br>
 AOP는  @Aspect를 사용해 Aspect를 나타내는 클래스라고 명시하고 @Component를 붙여 스프링 빈으로 등록한다.<br>
 PoinCut()으로 주입대상을 지정하고 @Before, @AfterReturning, @Around로 대상이 실행되기전, 후, 전-후를 지정하여 사용할수 있다.<br>
+
+----
+2022-11-30
+**ObjectMapper를 사용해 json을 객체로, 객체를 json으로 직접 변환해보는 연습**
+객체에서 json으로 변환하는 방법은 `writeValueAsString()`를 사용<br>
+json에서 객체로 변환하는 방법은 `readValue`를 사용<br>
+
+json을 직접 생성하는 방법<br>
+ObjectNode의 put메소드와 배열을 넣고 싶다면 arryayNode로 배열 생성하고 set을 통하여 objectNode에 추가<br>
 
 
 
