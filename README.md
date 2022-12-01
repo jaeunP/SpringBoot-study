@@ -204,6 +204,13 @@ json에서 객체로 변환하는 방법은 `readValue`를 사용<br>
 json을 직접 생성하는 방법<br>
 ObjectNode의 put메소드와 배열을 넣고 싶다면 arryayNode로 배열 생성하고 set을 통하여 objectNode에 추가<br>
 
+----
+2022-12-01
+**Entity로 받아오던 데이터를 DTO로 처리하도록 변경<br>
+계층간 교환을 위한 데이터는 DTO를 사용하고 DB와 상호작용을 할때는 Entity를 사용하는 것이 바람직하다.<br>
+따라서 Article Service에서 Entity로 외부와 소통하는 데이터를 DTO로 처리하도록 변경<br>
+Entity를 DTO로 변환하는 메소드 추가<br>
+
 
 
     
