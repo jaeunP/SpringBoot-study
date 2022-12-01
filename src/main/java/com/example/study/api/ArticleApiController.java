@@ -31,18 +31,19 @@ public class ArticleApiController {
 
     //POST
     @PostMapping("/api/articles")
-    public ResponseEntity<Article> create(@RequestBody ArticleDto dto) {
-        Article created = articleService.create(dto);
-        return (created != null) ?
-                ResponseEntity.status(HttpStatus.OK).body(created) :
-                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<ArticleDto> create(@RequestBody ArticleDto dto) {
+        ArticleDto createdDto = articleService.create(dto);
+
+        return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
 
     //PATCH
     @PatchMapping("/api/articles/{id}")
-    public ResponseEntity<Article> update(@PathVariable Long id,
+    public ResponseEntity<ArticleDto> update(@PathVariable Long id,
                                           @RequestBody ArticleDto dto) {
-        Article updated = articleService.update(id, dto);
+
+        //서비스에게 위임
+        ArticleDto updated = articleService.update(id, dto);
         return (updated != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(updated):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -56,15 +57,4 @@ public class ArticleApiController {
                 ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-
-    //트랜잭션 -> 실패 -> 롤백
-    @PostMapping("/api/transaction-test")
-    public ResponseEntity<List<Article>> transactionTest(@RequestBody List<ArticleDto> dtos) {
-        List<Article> createdList = articleService.createArticles(dtos);
-        return (createdList != null) ?
-                ResponseEntity.status(HttpStatus.OK).body(createdList) :
-                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-    }
-
-
 }

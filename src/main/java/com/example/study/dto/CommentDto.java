@@ -20,7 +20,7 @@ public class CommentDto {
     private String nickname;
     private String body;
 
-
+    //Dto로 변환
     public static CommentDto createCommentDto(Comment comment) {
         return new CommentDto(
                 comment.getId(),

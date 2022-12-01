@@ -1,5 +1,6 @@
 package com.example.study.entity;
 
+import com.example.study.dto.ArticleDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,12 +25,20 @@ public class Article {
     //@Column은 생략 가능
     private String content;
 
+    //Entity로 반환
+    public static Article toEntity(ArticleDto dto) {
+        return new Article(
+                dto.getId(),
+                dto.getTitle(),
+                dto.getContent()
+        );
+    }
 
-    public void patch(Article article) {
-        if (article.title != null)
-            this.title = article.title;
-        if (article.content != null)
-            this.content = article.content;
+    public void patch(ArticleDto dto) {
+        if (dto.getTitle() != null)
+            this.title = dto.getTitle();
+        if (dto.getContent() != null)
+            this.content = dto.getContent();
     }
 }
 /*  @Getter로 대체

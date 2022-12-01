@@ -47,22 +47,22 @@ public class ArticleController {
         return "articles/new";
     }
 
-    @PostMapping("/articles/create")
-    public String createArticle(ArticleDto form) {
-        log.info(form.toString());
-        //System.out.println(form.toString());기록에 남지도 않고 서버의 성능에 악영향 ->logging으로 대체
-
-        // 1.Dto를 Entity로 변환
-        Article article = form.toEntity();
-        log.info(article.toString());
-        //System.out.println(article.toString());
-
-        // 2. Repository에게 Entity DB안에 저장하게 함
-        Article saved = articleRepository.save(article);
-        log.info(saved.toString());
-        //System.out.println(saved.toString());
-        return "redirect:/articles/" + saved.getId();
-    }
+//    @PostMapping("/articles/create")
+//    public String createArticle(ArticleDto form) {
+//        log.info(form.toString());
+//        //System.out.println(form.toString());기록에 남지도 않고 서버의 성능에 악영향 ->logging으로 대체
+//
+//        // 1.Dto를 Entity로 변환
+//        Article article = form.toEntity();
+//        log.info(article.toString());
+//        //System.out.println(article.toString());
+//
+//        // 2. Repository에게 Entity DB안에 저장하게 함
+//        Article saved = articleRepository.save(article);
+//        log.info(saved.toString());
+//        //System.out.println(saved.toString());
+//        return "redirect:/articles/" + saved.getId();
+//    }
 
     //show
     @GetMapping("/articles/{id}")
@@ -93,24 +93,24 @@ public class ArticleController {
     }
 
 
-    @PostMapping("/articles/update")
-    public String update(ArticleDto form){
-        log.info(form.toString());
-
-        //1: DTO를 Entity로 변환
-        Article articleEntity = form.toEntity();
-        log.info(articleEntity.toString());
-
-        //2: Entity를 DB로 저장
-        //DB에서 기존 데이터를 가져옴
-        Article target =articleRepository.findById(articleEntity.getId()).orElse(null);
-
-        if(target != null){
-            articleRepository.save(articleEntity); // Entity가 DB로 갱신
-        }
-        //3: 페이지 뷰
-        return "redirect:/articles/" + articleEntity.getId();
-    }
+//    @PostMapping("/articles/update")
+//    public String update(ArticleDto dto){
+//        log.info(dto.toString());
+//
+//        //1: DTO를 Entity로 변환
+//        Article articleEntity = dto.toEntity();
+//        log.info(articleEntity.toString());
+//
+//        //2: Entity를 DB로 저장
+//        //DB에서 기존 데이터를 가져옴
+//        Article target =articleRepository.findById(articleEntity.getId()).orElse(null);
+//
+//        if(target != null){
+//            articleRepository.save(articleEntity); // Entity가 DB로 갱신
+//        }
+//        //3: 페이지 뷰
+//        return "redirect:/articles/" + articleEntity.getId();
+//    }
 
     //delete
     @GetMapping("/articles/{id}/delete")

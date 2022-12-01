@@ -28,7 +28,7 @@ public class Comment {
     @Column
     private String body;
 
-
+    //entity로 변환
     public static Comment createComment(CommentDto dto, Article article) {
         // 예외 처리
         if(dto.getId() != null)
