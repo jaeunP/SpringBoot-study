@@ -196,8 +196,8 @@ AOP는  @Aspect를 사용해 Aspect를 나타내는 클래스라고 명시하고
 PoinCut()으로 주입대상을 지정하고 @Before, @AfterReturning, @Around로 대상이 실행되기전, 후, 전-후를 지정하여 사용할수 있다.<br>
 
 ----
-2022-11-30
-**ObjectMapper를 사용해 json을 객체로, 객체를 json으로 직접 변환해보는 연습**
+2022-11-30<br>
+**ObjectMapper를 사용해 json을 객체로, 객체를 json으로 직접 변환해보는 연습**<br>
 객체에서 json으로 변환하는 방법은 `writeValueAsString()`를 사용<br>
 json에서 객체로 변환하는 방법은 `readValue`를 사용<br>
 
@@ -206,11 +206,15 @@ ObjectNode의 put메소드와 배열을 넣고 싶다면 arryayNode로 배열 �
 
 ----
 2022-12-01
-**Entity로 받아오던 데이터를 DTO로 처리하도록 변경<br>
+**Entity로 받아오던 데이터를 DTO로 처리하도록 변경**<br>
 계층간 교환을 위한 데이터는 DTO를 사용하고 DB와 상호작용을 할때는 Entity를 사용하는 것이 바람직하다.<br>
 따라서 Article Service에서 Entity로 외부와 소통하는 데이터를 DTO로 처리하도록 변경<br>
 Entity를 DTO로 변환하는 메소드 추가<br>
 
+----
+2022-12-02<br>
+**기존의 REST API을 JSON데이터로 송수신 하여 view로 연결**<br>
+JS의 fetch로 POST 사용<br>
 
 
     
