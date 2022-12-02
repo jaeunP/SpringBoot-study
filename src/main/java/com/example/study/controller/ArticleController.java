@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -27,7 +28,6 @@ public class ArticleController {
     private CommentService commentService;
 
 
-    //index
     @GetMapping("/articles")
     public String index(Model model) {
         // 1: 모든 Article을 가져온다
@@ -42,27 +42,11 @@ public class ArticleController {
     }
 
     //new
-    @GetMapping("/articles/new")
-    public String newArticleForm() {
+    @RequestMapping("/articles/new")
+    public String newArticle() {
         return "articles/new";
     }
 
-//    @PostMapping("/articles/create")
-//    public String createArticle(ArticleDto form) {
-//        log.info(form.toString());
-//        //System.out.println(form.toString());기록에 남지도 않고 서버의 성능에 악영향 ->logging으로 대체
-//
-//        // 1.Dto를 Entity로 변환
-//        Article article = form.toEntity();
-//        log.info(article.toString());
-//        //System.out.println(article.toString());
-//
-//        // 2. Repository에게 Entity DB안에 저장하게 함
-//        Article saved = articleRepository.save(article);
-//        log.info(saved.toString());
-//        //System.out.println(saved.toString());
-//        return "redirect:/articles/" + saved.getId();
-//    }
 
     //show
     @GetMapping("/articles/{id}")
@@ -98,7 +82,7 @@ public class ArticleController {
 //        log.info(dto.toString());
 //
 //        //1: DTO를 Entity로 변환
-//        Article articleEntity = dto.toEntity();
+//        Article articleEntity = Article.toEntity(dto);
 //        log.info(articleEntity.toString());
 //
 //        //2: Entity를 DB로 저장
