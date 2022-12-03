@@ -18,6 +18,7 @@ public class ArticleApiController {
     @Autowired  //DI, 생성 객체를 가져와 연결
     private ArticleService articleService;
 
+
     //index
     @GetMapping("/api/articles")
     public List<ArticleDto> index() {

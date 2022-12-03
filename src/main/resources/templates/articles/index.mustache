@@ -9,13 +9,13 @@
         </tr>
     </thead>
     <tbody>
-        {{#articleList}}
+        {{#articleDto}}
             <tr>
                 <th id="article-id">{{id}}</th>
                 <td id="article-title"><a href="articles/{{id}}">{{title}}</a></td>
                 <td id="article-content">{{content}}</td>
             </tr>
-        {{/articleList}}
+        {{/articleDto}}
     </tbody>
 </table>
 
@@ -23,7 +23,5 @@
 {{>layouts/footer}}
 
 <script>
-    {
 
-    }
 </script>

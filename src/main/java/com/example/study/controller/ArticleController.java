@@ -1,6 +1,5 @@
 package com.example.study.controller;
 
-import com.example.study.api.ArticleApiController;
 import com.example.study.service.CommentService;
 import com.example.study.dto.ArticleDto;
 import com.example.study.dto.CommentDto;
@@ -28,16 +27,17 @@ public class ArticleController {
     @Autowired
     private CommentService commentService;
 
-    private ArticleApiController articleApiController;
 
-
-    @RequestMapping("/articles")
-    public String index() {
+    @GetMapping("/articles")
+    public String index(Model model) {
+/*
         // 1: 모든 Article을 가져온다
         //서로 타입이 다르기 때문에 타입변환 필요, ArticleRepository에서 변환
+        List<Article> articleEntityList = articleRepository.findAll();
 
         // 2: 가져온 Article 묶음을 뷰로 전달
-       // model.addAttribute("articleList",articleApiController.index());
+        model.addAttribute("articleList",articleEntityList);
+*/
 
         // 3: 뷰 페이지를 설정
         return "articles/index";
