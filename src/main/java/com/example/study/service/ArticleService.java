@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service    //서비스 선언 ( 서비스 객체를 스프링부트에 생성)
@@ -17,13 +18,18 @@ public class ArticleService {
     private ArticleRepository articleRepository;
 
     //전체 목록 조회
-    public List<Article> index() {
-        return articleRepository.findAll();
+    public List<ArticleDto> index() {
+        List<Article> articleList = articleRepository.findAll();
+        return articleList
+                .stream()
+                .map(article -> ArticleDto.toDto(article))
+                .collect(Collectors.toList());
     }
 
     //상세 조회
-    public Article show(Long id) {
-        return articleRepository.findById(id).orElse(null);
+    public ArticleDto show(Long id) {
+        ArticleDto detail = ArticleDto.toDto( articleRepository.findById(id).orElse(null));
+        return detail;
     }
 
     //생성

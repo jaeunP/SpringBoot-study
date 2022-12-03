@@ -216,7 +216,6 @@ Entity를 DTO로 변환하는 메소드 추가<br>
 **기존의 REST API을 JSON데이터로 송수신 하여 view로 연결**<br>
 JS의 fetch로 POST 사용<br>
 
-
     
 
 

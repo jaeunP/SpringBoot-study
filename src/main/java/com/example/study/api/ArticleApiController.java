@@ -18,14 +18,16 @@ public class ArticleApiController {
     @Autowired  //DI, 생성 객체를 가져와 연결
     private ArticleService articleService;
 
-    //GET
+    //index
     @GetMapping("/api/articles")
-    public List<Article> index() {
+    public List<ArticleDto> index() {
+
         return articleService.index();
     }
 
+    //show
     @GetMapping("/api/articles/{id}")
-    public Article show(@PathVariable Long id) {
+    public ArticleDto show(@PathVariable Long id) {
         return articleService.show(id);
     }
 
