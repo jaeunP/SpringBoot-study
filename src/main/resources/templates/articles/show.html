@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <!--header-->
+        <div th:insert="layouts/header.html" id="header"></div>
+
+<!--        <table class="table">-->
+<!--            <thead>-->
+<!--                <tr th:each="article : ${article}">-->
+<!--                    <th scope="col">ID</th>-->
+<!--                    <th scope="col">Tittle</th>-->
+<!--                    <th scope="col">Content</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                <tr th:each="article : ${article}">-->
+<!--                    <th th:text="${article.id}">{{id}}</th>-->
+<!--                    <td th:text="${articles.title}">{{title}}</td>-->
+<!--                    <td th:text="${articles.content}">{{content}}</td>-->
+<!--                </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--        <a th:href="@{/articles/view(id= ${articles.id})/edit}" class="btn btn-primary">Edit</a>-->
+<!--        <a th:href="@{/articles/view(id= ${articles.id})/delete}" class="btn btn-danger">Delete</a>-->
+<!--        <a th:href="@{/articles}" class="btn btn-primary">GO to Article List</a>-->
+
+
+        <!--footer-->
+        <div th:insert="layouts/footer.html" id="footer"></div>
+    </body>
+</html>

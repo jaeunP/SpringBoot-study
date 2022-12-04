@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>Document</title>
+    </head>
+    <body>
+        <!--header-->
+        <div th:insert="layouts/header.html" id="header"></div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tittle</th>
+                    <th scope="col">Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr  th:each="articles : ${articleList}">
+                    <th id="article-id" th:text="${articles.id}">-</th>
+                    <td id="article-title" >
+                        <a th:href="@{/article/view(id= ${articles.id})}">
+                            <span th:text="${articles.title}"></span>
+                        </a></td>
+                    <td id="article-content" th:text="${articles.content}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="/articles/new">New Article</a>
+
+
+        <!--footer-->
+        <div th:insert="layouts/footer.html" id="footer"></div>
+    </body>
+</html>
