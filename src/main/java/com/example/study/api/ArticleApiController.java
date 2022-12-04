@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +19,11 @@ public class ArticleApiController {
     @Autowired  //DI, 생성 객체를 가져와 연결
     private ArticleService articleService;
 
-
     //index
     @GetMapping("/api/articles")
     public List<ArticleDto> index() {
-
-        return articleService.index();
+        List<ArticleDto> articleList = articleService.index();
+        return articleList;
     }
 
     //show

@@ -10,12 +10,12 @@ public class StudyController {
     @GetMapping("hi")
     public String niceTMeetYou(Model model) {
         model.addAttribute("username","재언");
-        return "greetings";
+        return "greetings.html";
     }
 
     @GetMapping("/bye")
     public String seeYouNext(Model model){
-        model.addAttribute("nickname","재언");
-        return "goodbye";
+        model.addAttribute("nickname","jaeun");
+        return "goodbye.html";
     }
 }
