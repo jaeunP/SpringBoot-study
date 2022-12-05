@@ -1,9 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
         <meta charset="UTF-8">
 
         <title>Document</title>
+
+        <script>
+            $(function(){
+                let articleLists = new Vue({
+                    el: "#articles",
+                    data : {
+                        articleList:{}
+                    }
+                })
+                $.ajax({
+                    type : "GET",
+                    url: '/api/articles',
+                    success: function (response) {
+                        console.dir(response);
+                        articleLists.articleList = response;
+                    }
+                })
+            })
+        </script>
     </head>
     <body>
         <!--header-->
@@ -17,19 +38,19 @@
                     <th scope="col">Content</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr  th:each="articles : ${articleList}">
-                    <th id="article-id" th:text="${articles.id}">-</th>
+            <tbody id="articles">
+                <tr v-for="index in articleList">
+                    <th><span>{{index.id}}</span></th>
                     <td id="article-title" >
-                        <a th:href="@{/article/view(id= ${articles.id})}">
-                            <span th:text="${articles.title}"></span>
+                        <a v-bind:href='`/articles/${index.id}`'>
+                            <span>{{index.title}}</span>
                         </a></td>
-                    <td id="article-content" th:text="${articles.content}"></td>
+                    <td id="article-content"><span>{{index.content}}</span></td>
                 </tr>
             </tbody>
         </table>
 
-        <a href="/articles/new">New Article</a>
+        <a th:href="@{articles/new}">New Article</a>
 
 
         <!--footer-->

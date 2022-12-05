@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
         <meta charset="UTF-8">
+
         <title>Title</title>
     </head>
+
+    <script>
+        $(function(){
+            const id = document.location.href.split("/").reverse()[0];
+
+
+            $.ajax({
+                type : "GET",
+                url: '/api/articles/' + id,
+                success: function (response) {
+                    console.dir(response);
+                    $("#id").html(response.id)
+                    $("#title").html(response.title)
+                    $("#content").html(response.content)
+
+                }
+            })
+        })
+    </script>
     <body>
         <!--header-->
         <div th:insert="layouts/header.html" id="header"></div>
 
-<!--        <table class="table">-->
-<!--            <thead>-->
-<!--                <tr th:each="article : ${article}">-->
-<!--                    <th scope="col">ID</th>-->
-<!--                    <th scope="col">Tittle</th>-->
-<!--                    <th scope="col">Content</th>-->
-<!--                </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--                <tr th:each="article : ${article}">-->
-<!--                    <th th:text="${article.id}">{{id}}</th>-->
-<!--                    <td th:text="${articles.title}">{{title}}</td>-->
-<!--                    <td th:text="${articles.content}">{{content}}</td>-->
-<!--                </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--        <a th:href="@{/articles/view(id= ${articles.id})/edit}" class="btn btn-primary">Edit</a>-->
-<!--        <a th:href="@{/articles/view(id= ${articles.id})/delete}" class="btn btn-danger">Delete</a>-->
-<!--        <a th:href="@{/articles}" class="btn btn-primary">GO to Article List</a>-->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tittle</th>
+                    <th scope="col">Content</th>
+                </tr>
+            </thead>
+            <tbody id="articles">
+                <tr>
+                    <th id="id"></th>
+                    <td id="title"></td>
+                    <td id="content"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/articles/view(id= ${articles.id})/edit}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/articles/view(id= ${articles.id})/delete}" class="btn btn-danger">Delete</a>
+        <a th:href="@{/articles}" class="btn btn-primary">GO to Article List</a>
 
 
         <!--footer-->

@@ -26,19 +26,9 @@ public class ArticleController {
     @Autowired
     private CommentService commentService;
 
-
-    @GetMapping("/articles")
-    public String index(Model model) {
-        // 1: 모든 Article을 가져온다
-        //서로 타입이 다르기 때문에 타입변환 필요, ArticleRepository에서 변환
-        List<Article> articleEntityList = articleRepository.findAll();
-
-        // 2: 가져온 Article 묶음을 뷰로 전달
-        model.addAttribute("articleList",articleEntityList);
-
-        // 3: 뷰 페이지를 설정
-        return "articles/index.html";
-    }
+    //index
+    @RequestMapping("/articles")
+    public String index() {return "articles/index.html";}
 
     //new
     @RequestMapping("/articles/new")
@@ -49,20 +39,7 @@ public class ArticleController {
 
     //show
     @GetMapping("/articles/{id}")
-    public String show(@PathVariable Long id, Model model) {
-        log.info("id=" + id);
-
-        //1: ID로 데이터를 가져옴
-        Article articleEntity = articleRepository.findById(id).orElse(null);//해당 아이디값이 없다면 null
-//        List< CommentDto> commentDtos = commentService.comments(id);
-
-        //2: 가져온 데이터를 모델에 등록
-        model.addAttribute("article", articleEntity);
-//        model.addAttribute("commentDtos", commentDtos);
-
-        //3: 보여줄 페이지를 설정
-        return "articles/show.html";
-    }
+    public String show() {return "articles/show.html";}
 
 
     //edit
