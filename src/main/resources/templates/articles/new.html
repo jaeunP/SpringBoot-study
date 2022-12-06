@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
         <meta charset="UTF-8">
         <title>Title</title>
 
         <script>
-            {
-                //article 버튼 변수화
-                const articleCreateBtn = document.querySelector("#article-create-btn");
-
-                articleCreateBtn.addEventListener("click", function (){
-                    const article = {
-                        title: document.querySelector("#new-article-title").value,
-                        content: document.querySelector("#new-article-content").value,
+            $(function(){
+                $('#article-create-btn').click(function (){
+                    let article = {
+                        title: $("#new-article-title").val(),
+                        content: $("#new-article-content").val()
                     };
-                    console.log(article);
-
-                    const url = "/api/articles";
-                    fetch(url, {
-                        method: "POST",
-                        body: JSON.stringify(article),
-                        headers: {
-                            "Content-Type": "application/json"
+                    $.ajax({
+                        type: "POST",
+                        url: '/api/articles/new',
+                        data: JSON.stringify(article),
+                        contentType: "application/json",
+                        success: function (){
+                            alert("게시글이 등록이되었습니다");
+                            location.href = "/articles";
                         }
-                    }).then(respnse =>{
-                        const msg = (respnse.ok) ? "게시글이 등록이되었습니다" : "댓글 등록 실패";
-                        alert(msg);
-                        link = "/articles";
-                        location.href = link;
                     })
                 })
-
-            }
+            })
         </script>
     </head>
     <body>
@@ -54,12 +48,6 @@
             <button type="submit" class="btn btn-primary" id="article-create-btn">Submit</button>
             <a  th:href="@{/articles}">Back</a>
         </div>
-
-
-
-
-
-
 
         <div th:insert="layouts/footer.html" id="footer"></div>
     </body>

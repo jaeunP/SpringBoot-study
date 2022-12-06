@@ -33,7 +33,7 @@ public class ArticleApiController {
     }
 
     //POST
-    @PostMapping("/api/articles")
+    @PostMapping("/api/articles/new")
     public ResponseEntity<ArticleDto> create(@RequestBody ArticleDto dto) {
         ArticleDto createdDto = articleService.create(dto);
 
