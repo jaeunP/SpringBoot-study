@@ -6,26 +6,30 @@
         <meta charset="UTF-8">
 
         <title>Title</title>
-    </head>
-
-    <script>
-        $(function(){
-            const id = document.location.href.split("/").reverse()[0];
 
 
-            $.ajax({
-                type : "GET",
-                url: '/api/articles/' + id,
-                success: function (response) {
-                    console.dir(response);
-                    $("#id").html(response.id)
-                    $("#title").html(response.title)
-                    $("#content").html(response.content)
+        <script>
+            $(function () {
+                const id = location.href.split("/").reverse()[0];
 
-                }
+                $.ajax({
+                    type: "GET",
+                    url: "/api/articles/" + id,
+                    success: function (response) {
+                        console.dir(response);
+                        $("#id").html(response.id)
+                        $("#title").html(response.title)
+                        $("#content").html(response.content)
+                    }
+                })
+                $('#edit-btn').click(function () {
+                    location.href ="/articles/edit/" + id;
+                })
+
+
             })
-        })
-    </script>
+        </script>
+    </head>
     <body>
         <!--header-->
         <div th:insert="layouts/header.html" id="header"></div>
@@ -46,8 +50,8 @@
                 </tr>
             </tbody>
         </table>
-        <a th:href="@{/articles/view(id= ${articles.id})/edit}" class="btn btn-primary">Edit</a>
-        <a th:href="@{/articles/view(id= ${articles.id})/delete}" class="btn btn-danger">Delete</a>
+        <a class="btn btn-primary" id="edit-btn">Edit</a>
+        <a class="btn btn-danger" id="delete-btn">Delete</a>
         <a th:href="@{/articles}" class="btn btn-primary">GO to Article List</a>
 
 

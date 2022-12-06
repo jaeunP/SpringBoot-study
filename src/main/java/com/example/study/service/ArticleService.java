@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,18 +16,6 @@ import java.util.stream.Collectors;
 public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
-
-    public String articleModel(Model model) {
-        // 1: 모든 Article을 가져온다
-        //서로 타입이 다르기 때문에 타입변환 필요, ArticleRepository에서 변환
-        List<Article> articleEntityList = articleRepository.findAll();
-
-        // 2: 가져온 Article 묶음을 뷰로 전달
-        model.addAttribute("articleList",articleEntityList);
-
-        // 3: 뷰 페이지를 설정
-        return articleModel(model);
-    }
 
     //전체 목록 조회
     public List<ArticleDto> index() {

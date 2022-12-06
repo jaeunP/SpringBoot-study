@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+        <meta charset="UTF-8">
+
+        <title>Title</title>
+
+        <script>
+            $(function(){
+                const id = location.href.split("/").reverse()[0];
+
+                $.ajax({
+                    type : "GET",
+                    url: '/api/articles/' + id,
+
+                    success: function (response) {
+                        console.dir(response);
+                        $("#patch-title").val(response.title)
+                        $("#patch-content").val(response.content)
+
+                    }
+                })
+
+                $("#back-btn").click(function (){
+                    location.href = "/articles/" + id;
+                })
+
+                $("#submit").click(function (){
+                    let article = {
+                        id: id,
+                        title: $("#patch-title").val(),
+                        content: $("#patch-content").val()
+                    };
+                    $.ajax({
+                        type: "PATCH",
+                        url: "/api/articles/" + id,
+                        data: JSON.stringify(article),
+                        contentType: "application/json",
+                        success: function (){
+                            alert("게시물이 수정되었습니다");
+                            location.href = "/articles/" + id;
+                        }
+                    })
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <div th:insert="layouts/header.html" id="header"></div>
+
+        <div class="container">
+            <div class="mb-3">
+                <label class="form-label">제목</label>
+                <input type="text" class="form-control" id="patch-title">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">내용</label>
+                <textarea class="form-control" rows="3" id="patch-content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+            <a  id="back-btn">Back</a>
+        </div>
+
+        <div th:insert="layouts/footer.html" id="footer"></div>
+    </body>
+</html>

@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,10 +20,7 @@ public class ArticleApiController {
 
     //index
     @GetMapping("/api/articles")
-    public List<ArticleDto> index() {
-        List<ArticleDto> articleList = articleService.index();
-        return articleList;
-    }
+    public List<ArticleDto> index() {return articleService.index();}
 
     //show
     @GetMapping("/api/articles/{id}")
@@ -33,7 +29,7 @@ public class ArticleApiController {
     }
 
     //POST
-    @PostMapping("/api/articles/new")
+    @PostMapping("/api/articles")
     public ResponseEntity<ArticleDto> create(@RequestBody ArticleDto dto) {
         ArticleDto createdDto = articleService.create(dto);
 
