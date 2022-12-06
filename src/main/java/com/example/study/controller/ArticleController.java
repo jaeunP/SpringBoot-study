@@ -43,26 +43,6 @@ public class ArticleController {
         return "articles/edit.html";
     }
 
-    //delete
-    @GetMapping("/articles/{id}/delete")
-    public String delete(@PathVariable Long id, RedirectAttributes rttr){
-        log.info("삭제 요청");
-
-        //1: 삭제 대상을 가져옴
-        Article articleEntity =articleRepository.findById(id).orElse(null);
-        log.info(articleEntity.toString());
-
-        //2: 대상을 삭제한다
-        if(articleEntity != null){
-            articleRepository.delete(articleEntity);
-            rttr.addFlashAttribute("msg","삭제가 완료되었습니다");
-        }
-        
-        //3: 결과 페이지로 리다이렉트
-
-        return "redirect:/articles";
-    }
-
 
 
 }
