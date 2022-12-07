@@ -1,7 +1,6 @@
 <div>
     <!-- 댓글 목록 -->
-    {{>comments/_list}}
+    <div th:insert="comments/_list.html" id="comments"></div>
 
     <!-- 새 댓글 작성 -->
-    {{>comments/_new}}
 </div>

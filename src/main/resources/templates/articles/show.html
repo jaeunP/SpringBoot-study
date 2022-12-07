@@ -12,6 +12,7 @@
             $(function () {
                 const id = location.href.split("/").reverse()[0];
 
+                //SHOW
                 $.ajax({
                     type: "GET",
                     url: "/api/articles/" + id,
@@ -22,10 +23,12 @@
                         $("#content").html(response.content)
                     }
                 })
+
                 $('#edit-btn').click(function () {
-                    location.href ="/articles/edit/" + id;
+                    location.href = "/articles/edit/" + id;
                 })
 
+                //DELETE
                 $('#delete-btn').click(function () {
                     if (confirm("삭제 하시겠습니까?") == true) {
                         $.ajax({
@@ -36,9 +39,7 @@
                                 location.href = "/articles";
                             }
                         })
-                    }else {
-
-                    }
+                    } else { alert("삭제가 취소되었습니다")}
                 })
             })
         </script>
@@ -67,8 +68,10 @@
         <a class="btn btn-danger" id="delete-btn">Delete</a>
         <a th:href="@{/articles}" class="btn btn-primary">GO to Article List</a>
 
+        <div th:insert="comments/_comments.html" id="comments"></div>
 
         <!--footer-->
         <div th:insert="layouts/footer.html" id="footer"></div>
+
     </body>
 </html>
