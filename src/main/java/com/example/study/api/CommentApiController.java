@@ -24,6 +24,16 @@ public class CommentApiController {
         // 결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
+
+    @GetMapping("/api/comment/{id}")
+    public ResponseEntity<CommentDto> show(@PathVariable Long id){
+
+        CommentDto showDto = commentService.show(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(showDto);
+
+    }
+
     //POST
     @PostMapping("/api/articles/{articleId}/comments")
     public ResponseEntity<CommentDto> create(@PathVariable Long articleId, @RequestBody CommentDto dto){

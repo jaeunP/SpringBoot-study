@@ -21,12 +21,17 @@ public class CommentService {
     @Autowired
     private ArticleRepository articleRepository;
 
-    //특정 ID 댓글 조회
+    //특정 ID의 댓글들 조회
     public List<CommentDto> comments(Long articleId) {
         return commentRepository.findByArticleId(articleId)
                 .stream()
                 .map(comment -> CommentDto.createCommentDto(comment))
                 .collect(Collectors.toList());
+    }
+
+    public CommentDto show(Long id){
+        CommentDto detail = CommentDto.createCommentDto(commentRepository.findById(id).orElse(null));
+        return detail;
     }
     
     //생성
