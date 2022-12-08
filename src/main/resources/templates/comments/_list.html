@@ -9,23 +9,39 @@
     </head>
     <script>
         $(function () {
-            const id = location.href.split("/").reverse()[0];
+            const articleId = location.href.split("/").reverse()[0];
+            console.log("articleId: " + articleId)
 
             let commentLists = new Vue({
                 el: "#comments",
                 data: {
                     commentList: {}
-                }
+                },
             })
             $.ajax({
                 type: "GET",
-                url: "/api/articles/" + id + "/comments",
+                url: "/api/articles/" + articleId + "/comments",
                 success: function (response) {
                     console.dir(response);
                     commentLists.commentList = response;
                 }
             })
+            let id = $("#comment-id").val();
+            console.log("id: " +id);
+            $("#comment-edit-modal").click(function (){
 
+                $.ajax({
+                    type: "GET",
+                    url: "/api/comment/" + id,
+                    success:function (response){
+                        console.dir(response);
+
+                        $("#patch-id").val(response.id)
+                        $("#patch-nickname").val(response.nickname)
+                        $("#patch-body").val(response.body)
+                    }
+                })
+            })
 
         })
     </script>
@@ -35,17 +51,22 @@
             <div v-for="index in commentList">
                 <div class="card m-2" id="comments-id">
                     <div class="card-header">
-                        <span>{{index.nickname}}</span>
+                        <span >{{index.nickname}}</span>
+
                         <!-- Button trigger modal -->
                         <button type="button"
+                                id="comment-patch-btn"
                                 class="btn btn-sm btn-outline-primary"
                                 data-bs-toggle="modal"
                                 data-bs-target="#comment-edit-modal"
-                                data-bs-id="{{id}}"
-                                data-bs-nickname="{{nickname}}"
-                                data-bs-body="{{body}}"
-                                data-bs-article-id="{{articleId}}">수정
+                                data-bs-article-id="${id}">수정
                         </button>
+                        <input type="text" id="article-id" value="">
+                        <input type="text" id="comment-id" v-model="index.id">
+                        <input type="text" id="comment-nickname" v-model="index.nickname">
+                        <input type="text" id="comment-body" v-model="index.body">
+
+
                         <!-- 댓글 삭제 버튼 -->
                         <button type="button"
                                 class="btn btn-sm btn-outline-danger comment-delete-btn"
@@ -68,26 +89,31 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- 댓글 수정 폼-->
-                        <form>
+
+                        <!-- 댓글 수정-->
+                        <div>
                             <!-- 닉네임 입력 -->
                             <div class="mb-3">
                                 <label class="form-label">닉네임</label>
-                                <input type="text" class="form-control form-control-sm" id="edit-comment-nickname">
+                                <input type="text" class="form-control form-control-sm" id="patch-nickname"
+                                       name="nickname">
                             </div>
+
                             <!-- 댓글 본문 입력 -->
                             <div class="mb-3">
                                 <label class="form-label">댓글 내용</label>
                                 <textarea type="text" class="form-control form-control-sm" rows="3"
-                                          id="edit-comment-body"></textarea>
+                                          id="patch-body" name="body"></textarea>
                             </div>
+
                             <!-- 히든 인풋 -->
-                            <input type="hidden" id="edit-comment-id">
-                            <input type="hidden" id="edit-comment-article-id">
+                            <input type="hidden" id="patch-id" name="id">
+                            <input type="hidden" id="patch-article-id" name="article_id">
+
                             <!-- 전송 버튼 -->
                             <button type="button" class="btn btn-outline-primary btn-sm" id="comment-update-btn">수정 완료
                             </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
