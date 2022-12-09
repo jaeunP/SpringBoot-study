@@ -9,9 +9,7 @@
         <script>
             $(function () {
                 const articleId = location.href.split("/").reverse()[0];
-                $('input[name=article-id]').attr('value',articleId);
-                console.log("articleId: " + articleId)
-
+                let id;
                 let commentLists = new Vue({
                     el: "#comments",
                     data: {
@@ -25,29 +23,63 @@
                         console.dir(response);
                         commentLists.commentList = response;
 
-                        setTimeout(function (){
-                            console.log($('.comment-id').val());
-                            $(".comment-patch-btn").click(function (){
+                        setTimeout(function () {
 
-                                let id = $(this).nextAll('.comment-id').val();
+                            //PATCH
+                            $(".comment-patch-btn").click(function () {
+
+                                //바로 다음 comment-id의 클래스를 가져옴
+                                id = $(this).nextAll('.comment-id').val();
                                 console.log(id);
                                 $.ajax({
                                     type: "GET",
                                     url: "/api/comment/" + id,
-                                    success:function (response){
+                                    success: function (response) {
                                         console.dir(response);
 
-                                        $("#patch-id").val(response.id)
                                         $("#patch-nickname").val(response.nickname)
                                         $("#patch-body").val(response.body)
                                     }
                                 })
                             })
-                        }, 1000)
+                            //DELETE
+                            $(".comment-delete-btn").click(function () {
+                                if (confirm("삭제 하시겠습니까?") == true) {
+                                    id = $(this).nextAll('.comment-id').val();
+                                    $.ajax({
+                                        type: "DELETE",
+                                        url: "/api/comments/" + id,
+                                        success: function () {
+                                            alert("댓글이 삭제되었습니다");
+                                            window.location.reload(true);
+                                        }
+                                    })
+                                } else {
+                                    alert("삭제가 취소되었습니다")
+                                }
+                            })
+                        }, 300);
 
                     }
                 })
-
+                $("#comment-update-btn").click(function (){
+                    let comment = {
+                        article_id: articleId,
+                        id: id,
+                        nickname: $("#patch-nickname").val(),
+                        body: $("#patch-body").val()
+                    };
+                    $.ajax({
+                        type:"PATCH",
+                        url: "/api/comments/" + id,
+                        data: JSON.stringify(comment),
+                        contentType: "application/json",
+                        success: function (){
+                            alert("댓글이 수정되었습니다");
+                            window.location.reload(true);
+                        }
+                    })
+                })
             })
         </script>
     </head>
@@ -60,20 +92,18 @@
                         <span id="nickname">{{index.nickname}}</span>
 
                         <!-- Button trigger modal -->
-                        <input type="button"
+                        <button
                                 class="btn btn-sm btn-outline-primary comment-patch-btn"
                                 data-bs-toggle="modal"
-                                data-bs-target="#comment-edit-modal"
-                                value="수정"
-                                />
-                        <input type="hidden" class="comment-id" :value=`${index.id}`>
-
+                                data-bs-target="#comment-edit-modal">수정
+                        </button>
 
                         <!-- 댓글 삭제 버튼 -->
-                        <button type="button"
-                                class="btn btn-sm btn-outline-danger comment-delete-btn"
-                                data-comment-id="{{id}}">삭제
+                        <button
+                                class="btn btn-sm btn-outline-danger comment-delete-btn">삭제
                         </button>
+                        <input type="hidden" class="comment-id" :value=`${index.id}`>
+
                     </div>
                     <div class="card-body">
                         <span>{{index.body}}</span>
