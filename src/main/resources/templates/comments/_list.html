@@ -6,65 +6,67 @@
         <meta charset="UTF-8">
 
         <title>Document</title>
-    </head>
-    <script>
-        $(function () {
-            const articleId = location.href.split("/").reverse()[0];
-            console.log("articleId: " + articleId)
+        <script>
+            $(function () {
+                const articleId = location.href.split("/").reverse()[0];
+                $('input[name=article-id]').attr('value',articleId);
+                console.log("articleId: " + articleId)
 
-            let commentLists = new Vue({
-                el: "#comments",
-                data: {
-                    commentList: {}
-                },
-            })
-            $.ajax({
-                type: "GET",
-                url: "/api/articles/" + articleId + "/comments",
-                success: function (response) {
-                    console.dir(response);
-                    commentLists.commentList = response;
-                }
-            })
-            let id = $("#comment-id").val();
-            console.log("id: " +id);
-            $("#comment-edit-modal").click(function (){
-
+                let commentLists = new Vue({
+                    el: "#comments",
+                    data: {
+                        commentList: {}
+                    },
+                })
                 $.ajax({
                     type: "GET",
-                    url: "/api/comment/" + id,
-                    success:function (response){
+                    url: "/api/articles/" + articleId + "/comments",
+                    success: function (response) {
                         console.dir(response);
+                        commentLists.commentList = response;
 
-                        $("#patch-id").val(response.id)
-                        $("#patch-nickname").val(response.nickname)
-                        $("#patch-body").val(response.body)
+                        setTimeout(function (){
+                            console.log($('.comment-id').val());
+                            $(".comment-patch-btn").click(function (){
+
+                                let id = $(this).nextAll('.comment-id').val();
+                                console.log(id);
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/api/comment/" + id,
+                                    success:function (response){
+                                        console.dir(response);
+
+                                        $("#patch-id").val(response.id)
+                                        $("#patch-nickname").val(response.nickname)
+                                        $("#patch-body").val(response.body)
+                                    }
+                                })
+                            })
+                        }, 1000)
+
                     }
                 })
-            })
 
-        })
-    </script>
+            })
+        </script>
+    </head>
     <body>
         <!-- 댓글 -->
         <div id="comments">
             <div v-for="index in commentList">
                 <div class="card m-2" id="comments-id">
                     <div class="card-header">
-                        <span >{{index.nickname}}</span>
+                        <span id="nickname">{{index.nickname}}</span>
 
                         <!-- Button trigger modal -->
-                        <button type="button"
-                                id="comment-patch-btn"
-                                class="btn btn-sm btn-outline-primary"
+                        <input type="button"
+                                class="btn btn-sm btn-outline-primary comment-patch-btn"
                                 data-bs-toggle="modal"
                                 data-bs-target="#comment-edit-modal"
-                                data-bs-article-id="${id}">수정
-                        </button>
-                        <input type="text" id="article-id" value="">
-                        <input type="text" id="comment-id" v-model="index.id">
-                        <input type="text" id="comment-nickname" v-model="index.nickname">
-                        <input type="text" id="comment-body" v-model="index.body">
+                                value="수정"
+                                />
+                        <input type="hidden" class="comment-id" :value=`${index.id}`>
 
 
                         <!-- 댓글 삭제 버튼 -->
@@ -118,5 +120,6 @@
                 </div>
             </div>
         </div>
+
     </body>
 </html>

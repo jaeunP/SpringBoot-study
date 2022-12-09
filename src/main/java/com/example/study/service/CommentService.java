@@ -28,12 +28,12 @@ public class CommentService {
                 .map(comment -> CommentDto.createCommentDto(comment))
                 .collect(Collectors.toList());
     }
-
     public CommentDto show(Long id){
         CommentDto detail = CommentDto.createCommentDto(commentRepository.findById(id).orElse(null));
         return detail;
     }
-    
+
+
     //생성
     @Transactional
     public CommentDto create(Long articleId, CommentDto dto) {
