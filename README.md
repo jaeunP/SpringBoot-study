@@ -216,6 +216,18 @@ Entity를 DTO로 변환하는 메소드 추가<br>
 **기존의 REST API을 JSON데이터로 송수신 하여 view로 연결**<br>
 JS의 fetch로 POST 사용<br>
 
+----
+**REST ful**<br>
+
+기존에 템플릿 엔진으로  mustache를 사용하였지만 rest ful하게 만드는 과정에서<br>
+템플릿 엔진으로 많이 사용되고 있는 thymeleaf를 사용하여 mustache 파일을 대체하였다.<br>
+기존에 controller에서 model을 사용하여 데이터를 view로 반환하였던 과정을 ajax을 통하여<br>
+JSON 데이터로 송수신 하게 설계하였다.<br>
+javascript는 jQuery를 이용하여 작성하였고 list를 반복하여 불러올때는 Vue.js를 사용하였다.<br>
+
+
+
+
     
 
 
