@@ -224,7 +224,9 @@ JS의 fetch로 POST 사용<br>
 기존에 controller에서 model을 사용하여 데이터를 view로 반환하였던 과정을 ajax을 통하여<br>
 JSON 데이터로 송수신 하게 설계하였다.<br>
 javascript는 jQuery를 이용하여 작성하였고 list를 반복하여 불러올때는 Vue.js를 사용하였다.<br>
-
+댓글 수정기능을 구현할때 comment id가 undefined가 되어 fatch 메소드가 작동하지 않았다<br>
+이유는 javascript가 실행될때 id값을 받아오기보다 patch 요청이 더 빨리 처리되어서 였다.<br>
+settimeout을 사용하여 딜레이를 줘서 해결<br>
 
 
 
