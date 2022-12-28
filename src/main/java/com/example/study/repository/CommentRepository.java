@@ -16,6 +16,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
              nativeQuery = true)   //nativeQuery = true는 SQL, false는 JPQL
      List<Comment> findByArticleId(@Param("articleId") Long articleId);
 
-    //특정 닉네임의 모든 댓글 조회
-    List<Comment> findByNickname(String nickname);
+
 }

@@ -28,7 +28,8 @@ public class CommentService {
                 .map(comment -> CommentDto.createCommentDto(comment))
                 .collect(Collectors.toList());
     }
-    public CommentDto show(Long id){
+
+    public CommentDto show(Long id) {
         CommentDto detail = CommentDto.createCommentDto(commentRepository.findById(id).orElse(null));
         return detail;
     }
@@ -50,7 +51,7 @@ public class CommentService {
         // DTO로 변경하여 반환
         return CommentDto.createCommentDto(created);
     }
-    
+
     //수정
     @Transactional
     public CommentDto update(Long id, CommentDto dto) {
@@ -66,7 +67,7 @@ public class CommentService {
         //댓글 Entity를 DTO로 변환
         return CommentDto.createCommentDto(updated);
     }
-    
+
     //삭제
     @Transactional
     public CommentDto delete(Long id) {
@@ -79,6 +80,20 @@ public class CommentService {
 
         //삭제 댓글을 DTO로 반환
         return CommentDto.createCommentDto(target);
+    }
+
+    public List<CommentDto> deleteAll(Long articleId) {
+        List<CommentDto> target = commentRepository.findByArticleId(articleId)
+                .stream()
+                .map(comment -> CommentDto.createCommentDto(comment))
+                .collect(Collectors.toList());
+        
+        if (target == null){
+            target = (List<CommentDto>) new IllegalArgumentException("해당 댓글이나 게시물이 존재하지 않음");
+        }
+        commentRepository.deleteInBatch(commentRepository.findByArticleId(articleId));
+
+        return target;
     }
 }
 //          //댓글 목록 조회
