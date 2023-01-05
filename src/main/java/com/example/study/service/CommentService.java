@@ -9,10 +9,10 @@ import com.example.study.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-
 import java.util.List;
 import java.util.stream.Collectors;
+import static com.example.study.dto.CommentDto.createCommentDto;
+import static com.example.study.entity.Comment.createComment;
 
 @Service
 public class CommentService {
@@ -73,7 +73,7 @@ public class CommentService {
     public CommentDto delete(Long id) {
         //댓글 조회 및 예외 발생
         Comment target = commentRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("댓글 삭제 실패, 댓글이 없습니다"));
+                .orElseThrow(() -> new IllegalArgumentException("댓글 삭제 실패, 댓글이 없습니다."));
 
         //댓글 DB에서 삭제
         commentRepository.delete(target);
@@ -82,20 +82,24 @@ public class CommentService {
         return CommentDto.createCommentDto(target);
     }
 
-    public List<CommentDto> deleteAll(Long articleId) {
+    public String deleteAll(Long articleId) {
+
         List<CommentDto> target = commentRepository.findByArticleId(articleId)
                 .stream()
                 .map(comment -> CommentDto.createCommentDto(comment))
                 .collect(Collectors.toList());
-        
-        if (target == null){
-            target = (List<CommentDto>) new IllegalArgumentException("해당 댓글이나 게시물이 존재하지 않음");
-        }
-        commentRepository.deleteInBatch(commentRepository.findByArticleId(articleId));
 
-        return target;
+        if(target.isEmpty()){
+            return  "NO DATA";
+        }else{
+            commentRepository.deleteInBatch(commentRepository.findByArticleId(articleId));
+            return "SUCCESS";
+        }
     }
 }
+
+
+
 //          //댓글 목록 조회
 //          List<Comment> comments = commentRepository.findByArticleId(articleId);
 //          //Entity -> DTO로 변환

@@ -1,7 +1,6 @@
 package com.example.study.api;
 
 import com.example.study.annotation.RunningTime;
-import com.example.study.entity.Comment;
 import com.example.study.service.CommentService;
 import com.example.study.dto.CommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,10 +69,10 @@ public class CommentApiController {
     }
 
     @DeleteMapping("/api/article/comments/{articleId}")
-    public ResponseEntity<List<CommentDto>> deleteAll(@PathVariable Long articleId){
+    public ResponseEntity<String> deleteAll(@PathVariable Long articleId){
 
         // 서비스에게 위임
-        List<CommentDto> deleted = commentService.deleteAll(articleId);
+        String deleted = commentService.deleteAll(articleId);
 
         // 결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(deleted);
