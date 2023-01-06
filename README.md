@@ -228,6 +228,8 @@ javascript는 jQuery를 이용하여 작성하였고 list를 반복하여 불러
 이유는 javascript가 실행될때 id값을 받아오기보다 patch 요청이 더 빨리 처리되어서 였다.<br>
 settimeout을 사용하여 딜레이를 줘서 해결<br>
 
+게시물 삭제시 댓글이 남아있을경우 삭제되지 않는 문제 해결<br>
+
 
 
     
